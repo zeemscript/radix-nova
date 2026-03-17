@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Outfit", var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0 / 70%);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0 / 90%);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* A stunning gradient-ready primary color (Violet to Deep Pink) */
+  --primary: oklch(0.55 0.25 290);
+  --primary-foreground: oklch(0.985 0 0);
+
+  /* Rich secondary tones for subtle highlights */
+  --secondary: oklch(0.95 0.05 290);
+  --secondary-foreground: oklch(0.3 0.1 290);
+
+  /* Muted elements in light neutral */
+  --muted: oklch(0.96 0.01 280);
+  --muted-foreground: oklch(0.5 0.05 280);
+
+  /* Accent for micro-interactions */
+  --accent: oklch(0.92 0.1 280);
+  --accent-foreground: oklch(0.35 0.15 280);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.9 0.05 280);
+  --input: oklch(0.92 0.03 280);
+  --ring: oklch(0.6 0.2 290);
+
+  --radius: 1rem;
+}
+
+.dark {
+  /* Ultra premium sleek dark background */
+  --background: oklch(0.12 0.01 240);
+  --foreground: oklch(0.98 0 0);
+
+  /* Glassmorphic cards in dark mode */
+  --card: oklch(0.15 0.02 240 / 60%);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.13 0.02 240 / 80%);
+  --popover-foreground: oklch(0.98 0 0);
+
+  /* Vibrant neon purple */
+  --primary: oklch(0.65 0.27 290);
+  --primary-foreground: oklch(0.98 0 0);
+
+  --secondary: oklch(0.2 0.05 250);
+  --secondary-foreground: oklch(0.9 0.05 250);
+
+  --muted: oklch(0.18 0.03 240);
+  --muted-foreground: oklch(0.65 0.05 250);
+
+  --accent: oklch(0.25 0.1 280);
+  --accent-foreground: oklch(0.9 0.1 280);
+
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.25 0.05 250 / 40%);
+  --input: oklch(0.2 0.04 250);
+  --ring: oklch(0.65 0.27 290);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30 selection:text-foreground;
+  }
+}
+
+/* Custom Aesthetic Utilities */
+
+.glass-panel {
+  @apply bg-card backdrop-blur-xl border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)];
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[oklch(0.65_0.27_290)] to-[oklch(0.65_0.2_330)];
+}
+
+.bg-gradient-premium {
+  @apply bg-gradient-to-br from-[var(--background)] via-[oklch(0.2_0.05_280)] to-[var(--background)];
+}
+
+/* Dynamic background blobs */
+.bg-blobs {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-blobs::before,
+.bg-blobs::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  opacity: 0.15;
+  animation: pulse-slow 15s ease-in-out infinite alternate;
+}
+
+.bg-blobs::before {
+  top: -10%;
+  left: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: oklch(0.65 0.27 290);
+}
+
+.bg-blobs::after {
+  bottom: -10%;
+  right: -10%;
+  width: 35vw;
+  height: 35vw;
+  background: oklch(0.65 0.2 330);
+  animation-delay: -5s;
+}
+
+@keyframes pulse-slow {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(2%, 2%);
+  }
+  100% {
+    transform: scale(0.9) translate(-2%, -2%);
+  }
+}
+
+.message-bubble-user {
+  @apply relative overflow-hidden bg-primary text-primary-foreground shadow-lg shadow-primary/25 border border-primary-foreground/10;
+}
+
+.message-bubble-user::after {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none;
+}
+
+.message-bubble-ai {
+  @apply bg-secondary/80 text-secondary-foreground border border-border shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-secondary hover:shadow-md hover:border-primary/20;
+}
