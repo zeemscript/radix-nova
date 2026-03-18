@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -70,7 +69,7 @@
   --input: oklch(0.92 0.03 280);
   --ring: oklch(0.6 0.2 290);
 
-  --radius: 1rem;
+  --radius: 0.75rem;
 }
 
 .dark {
@@ -117,7 +116,7 @@
 /* Custom Aesthetic Utilities */
 
 .glass-panel {
-  @apply bg-card backdrop-blur-xl border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)];
+  @apply bg-card backdrop-blur-xl border border-border shadow-[0_25px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_25px_50px_rgba(0,0,0,0.1)];
 }
 
 .text-gradient {
@@ -143,7 +142,14 @@
   filter: blur(100px);
   z-index: -1;
   opacity: 0.15;
-  animation: pulse-slow 15s ease-in-out infinite alternate;
+  animation: pulse-slow 25s ease-in-out infinite alternate;
+}
+
+@layer utilities {
+  .focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
 }
 
 .bg-blobs::before {
